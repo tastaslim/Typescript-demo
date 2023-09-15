@@ -1,8 +1,4 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-bold=$(tput bold)
-echo "\n.................${bold}compiling source code.................."
-npm run-script build
-echo "\n.................${bold}check for linting and coding standards................."
-npm run-script lint
-npx lint-staged
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm test
