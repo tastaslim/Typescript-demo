@@ -1,0 +1,13 @@
+#!/bin/sh
+bold=$(tput bold)
+RED='\033[0;31m'
+if ! head -1 "$1" | grep -qE "^(feat|fix|chore|docs|test|style|refactor|perf|build|ci|revert)(\(.+?\))?: .{1,}$"; then
+    echo "${RED}Aborting commit. ${bold} Your commit message is invalid." >&2
+    echo "Please follow conventional commit pattern: https://www.conventionalcommits.org/en/v1.0.0" >&2
+    exit 1
+fi
+if ! head -1 "$1" | grep -qE "^.{1,88}$"; then
+    echo "${RED}Aborting commit. ${bold} Your commit message is too long. Please follow conventional commit pattern." >&2
+    echo "Please follow conventional commit pattern: https://www.conventionalcommits.org/en/v1.0.0" >&2
+    exit 1
+fi
